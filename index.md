@@ -3,6 +3,7 @@
 1. mkdir <dir>
 2. cd to newly created <dir>
 3. npm init -y
+
     ``` bash
     [2007][react-from-scratch]$ npm init -y
     Wrote to /home/brigzz/webdev/react-from-scratch/package.json:
@@ -23,6 +24,7 @@
 
 4. Install react and react-dom libraries:
    -  **npm install react react-dom**
+   
     ``` bash
     [2008][react-from-scratch]$ npm install react react-dom
     npm notice created a lockfile as package-lock.json. You should commit this file.
@@ -44,6 +46,7 @@
     ```
 
 5. At this point, you might want to create a .git-ignore file and add **node_modules** and **dist** to the list so they will be updated in your git repository.
+    
     ``` shell
     [2021][react-from-scratch]$ cat .gitignore
     node_modules
@@ -51,6 +54,7 @@
     ```
 
 6. Create folder **app**. Add index.html,  index.css and index.js inside the folder.
+    
     ``` shell
     [2022][react-from-scratch]$ mkdir app
     [2023][react-from-scratch]$ ls
@@ -61,6 +65,7 @@
     ```
 
 7. Boilerplate for index.html
+    
     ```html
     <!DOCTYPE html>
     <html lang="en">
@@ -76,6 +81,7 @@
     ```
 
 8. Add to index.js
+    
     ``` react
     const React = require('react');
     const ReactDOM = require('react-dom');
@@ -95,6 +101,7 @@
 	```
 
 9. index.css
+    
     ```css
     body {
         background-color: bisque;
@@ -106,6 +113,7 @@
     ```
 
 10. There are a lot of variations as to what to install for babel and webpack. For now I will be installing these:
+    
     ```bash
     npm install --save-dev @babel/core @babel/preset-env @babel/preset-react webpack webpack-cli webpack-dev-server babel-loader css-loader style-loader html-webpack-plugin
 
@@ -133,9 +141,8 @@
 
 - **html-webpack-plugin** - Plugin that simplifies creation of HTML files to serve your bundles. 
 
-  
-
 11. Create **webpack.config.js** file in root folder of the application.
+    
     ```bash
     [2033][react-from-scratch]$ touch webpack.config.js
     [2034][react-from-scratch]$ ls
@@ -143,6 +150,7 @@
     ```
 
 12. Add below code into file:
+    
     ```react
     const path = require('path');
     const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -168,6 +176,7 @@
     ```
 
 13. Add the following to **package.json** for babel and scripts:
+    
     ```json
       "babel" : {
         "presets": ["@babel/preset-env", "@babel/preset-react"]
@@ -181,6 +190,7 @@
     ```
 
 14. To bundle: 
+    
     ```shell
     [2038][react-from-scratch]$ npm run bundle
     ```
@@ -189,3 +199,6 @@
     ```shell
     [2038][react-from-scratch]$ npm run start-dev
     ```
+
+
+
