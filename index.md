@@ -3,204 +3,189 @@
 1. mkdir <dir>
 2. cd to newly created <dir>
 3. npm init -y
+    ``` bash
+    [2007][react-from-scratch]$ npm init -y
+    Wrote to /home/brigzz/webdev/react-from-scratch/package.json:
 
-``` bash
-[2007][react-from-scratch]$ npm init -y
-Wrote to /home/brigzz/webdev/react-from-scratch/package.json:
-
-{
-  "name": "react-from-scratch",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
-```
+    {
+      "name": "react-from-scratch",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC"
+    }
+    ```
 
 4. Install react and react-dom libraries:
    -  **npm install react react-dom**
+    ``` bash
+    [2008][react-from-scratch]$ npm install react react-dom
+    npm notice created a lockfile as package-lock.json. You should commit this file.
+    npm WARN react-from-scratch@1.0.0 No description
+    npm WARN react-from-scratch@1.0.0 No repository field.
 
-``` bash
-[2008][react-from-scratch]$ npm install react react-dom
-npm notice created a lockfile as package-lock.json. You should commit this file.
-npm WARN react-from-scratch@1.0.0 No description
-npm WARN react-from-scratch@1.0.0 No repository field.
+    + react@16.13.1
+    + react-dom@16.13.1
+    added 8 packages from 3 contributors and audited 22 packages in 10.993s
+    found 0 vulnerabilities
+    ```
+   
+	You should see some updates in **package.json** as well as libraries and dependencies in **node_modules** folder:
 
-+ react@16.13.1
-+ react-dom@16.13.1
-added 8 packages from 3 contributors and audited 22 packages in 10.993s
-found 0 vulnerabilities
-
-```
-
-You should see some updates in **package.json** as well as libraries and dependencies in **node_modules** folder:
-
-``` bash
-[2019][react-from-scratch]$ ls node_modules
-js-tokens     object-assign  react      react-is
-loose-envify  prop-types     react-dom  scheduler
-```
+    ``` bash
+    [2019][react-from-scratch]$ ls node_modules
+    js-tokens     object-assign  react      react-is
+    loose-envify  prop-types     react-dom  scheduler
+    ```
 
 5. At this point, you might want to create a .git-ignore file and add **node_modules** and **dist** to the list so they will be updated in your git repository.
-
-``` shell
-[2021][react-from-scratch]$ cat .gitignore
-node_modules
-dist
-```
+    ``` shell
+    [2021][react-from-scratch]$ cat .gitignore
+    node_modules
+    dist
+    ```
 
 6. Create folder **app**. Add index.html,  index.css and index.js inside the folder.
-
-``` shell
-[2022][react-from-scratch]$ mkdir app
-[2023][react-from-scratch]$ ls
-app  node_modules  package.json  package-lock.json
-[2024][react-from-scratch]$ touch index.css index.js index.html
-[2030][react-from-scratch]$ ls app
-index.css  index.js	 index.html
-```
+    ``` shell
+    [2022][react-from-scratch]$ mkdir app
+    [2023][react-from-scratch]$ ls
+    app  node_modules  package.json  package-lock.json
+    [2024][react-from-scratch]$ touch index.css index.js index.html
+    [2030][react-from-scratch]$ ls app
+    index.css  index.js	 index.html
+    ```
 
 7. Boilerplate for index.html
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React from Scratch</title>
-</head>
-<body>
-    <div id="app"></div>
-</body>
-</html>
-```
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React from Scratch</title>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+    </html>
+    ```
 
 8. Add to index.js
+    ``` react
+    const React = require('react');
+    const ReactDOM = require('react-dom');
+    require('./index.css');
 
-``` react
-const React = require('react');
-const ReactDOM = require('react-dom');
-require('./index.css');
-
-class App extends React.Component {
-    render() {
-        return(
-            <div>Hello World</div>
-        )
+    class App extends React.Component {
+        render() {
+            return(
+                <div>Hello World</div>
+            )
+        }
     }
-}
 
-ReactDOM.render(
-    <App />, document.getElementById('app')
-)
-```
+    ReactDOM.render(
+        <App />, document.getElementById('app')
+    )
+	```
 
 9. index.css
+    ```css
+    body {
+        background-color: bisque;
+    }
 
-```css
-body {
-    background-color: bisque;
-}
-
-#app {
-    color: lightseagreen;
-}
-```
-
-
+    #app {
+        color: lightseagreen;
+    }
+    ```
 
 10. There are a lot of variations as to what to install for babel and webpack. For now I will be installing these:
+    ```bash
+    npm install --save-dev @babel/core @babel/preset-env @babel/preset-react webpack webpack-cli webpack-dev-server babel-loader css-loader style-loader html-webpack-plugin
 
-```bash
-npm install --save-dev @babel/core @babel/preset-env @babel/preset-react webpack webpack-cli webpack-dev-server babel-loader css-loader style-loader html-webpack-plugin
-
-//not installed
-html-loader 
-```
+    //not installed
+    html-loader 
+    ```
 
 - **@babel/core** -  core functionality of Babel 
+
 - **@babel/preset-env** - allows you to use the latest JavaScript without needing to micromanage which syntax transforms
 
 - **@babel/preset-react** - Adds support for JSX
 
 - **babel-loader**-  allows transpiling JavaScript files using Babel and webpack. 
+
 - **webpack** - to bundle JavaScript files for usage in a browser
 
 - **webpack-cli** - provides a flexible set of commands for developers to increase speed when setting up a custom webpack project.
+
 - **webpack-dev-server**  - Serves a webpack app
 
 - **css-loader** - help webpack to collect CSS from all the css files referenced in your application and put it into a string
 
 - **style-loader** - **style-loader** would take the output string generated by the above css-loader and put it inside the <style> tags in the index.html file.
+
 - **html-webpack-plugin** - Plugin that simplifies creation of HTML files to serve your bundles. 
 
-
+  
 
 11. Create **webpack.config.js** file in root folder of the application.
-
-```bash
-[2033][react-from-scratch]$ touch webpack.config.js
-[2034][react-from-scratch]$ ls
-app  node_modules  package.json  package-lock.json  webpack.config.js
-```
-
-
+    ```bash
+    [2033][react-from-scratch]$ touch webpack.config.js
+    [2034][react-from-scratch]$ ls
+    app  node_modules  package.json  package-lock.json  webpack.config.js
+    ```
 
 12. Add below code into file:
+    ```react
+    const path = require('path');
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-```react
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-    mode: 'development',
-    entry: './app/index.js',
-    output: {
-        //location of bundle directory/file
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index_bundle.js'
-    },
-    module: {
-        rules: [
-            { test: /\.js$/, use: 'babel-loader'},
-            { test: /\.css$/, use:[ 'style-loader', 'css-loader']}
+    module.exports = {
+        mode: 'development',
+        entry: './app/index.js',
+        output: {
+            //location of bundle directory/file
+            path: path.resolve(__dirname, 'dist'),
+            filename: 'index_bundle.js'
+        },
+        module: {
+            rules: [
+                { test: /\.js$/, use: 'babel-loader'},
+                { test: /\.css$/, use:[ 'style-loader', 'css-loader']}
+            ]
+        },
+        plugins: [
+            new HtmlWebpackPlugin({template: './app/index.html'})
         ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({template: './app/index.html'})
-    ]
-};
-
-```
+    };
+    ```
 
 13. Add the following to **package.json** for babel and scripts:
-
-```json
-  "babel" : {
-    "presets": ["@babel/preset-env", "@babel/preset-react"]
-  },
-  "scripts": {
-    //for bundling into dist folder
-    "bundle": "webpack",
-    //for dev
-    "start-dev" : "webpack-dev-server --open"
-  },
-```
+    ```json
+      "babel" : {
+        "presets": ["@babel/preset-env", "@babel/preset-react"]
+      },
+      "scripts": {
+        //for bundling into dist folder
+        "bundle": "webpack",
+        //for dev
+        "start-dev" : "webpack-dev-server --open"
+      },
+    ```
 
 14. To bundle: 
+    ```shell
+    [2038][react-from-scratch]$ npm run bundle
+    ```
 
-```shell
-[2038][react-from-scratch]$ npm run bundle
-```
-
-To run as dev server:
-
-```shell
-[2038][react-from-scratch]$ npm run start-dev
-```
+	To run as dev server:
+    ```shell
+    [2038][react-from-scratch]$ npm run start-dev
+    ```
